@@ -1,5 +1,29 @@
+import re
+
+from src.cli.regex_patterns import *
+
+
 def show_help():
-    print("Que te ayude Dios")
+    commands = {
+        "create": ("create 'table', 'column family'", "Creates a new table with the specified column family."),
+        "list": ("list", "Lists all tables in HBase."),
+        "disable": ("disable 'table'", "Disables the specified table."),
+        "is_enabled": ("is_enabled 'table'", "Checks if the specified table is enabled."),
+        "alter": ("alter 'table', ...", "Alters the configuration of an existing table."),
+        "drop": ("drop 'table'", "Deletes a table in HBase."),
+        "drop_all": ("drop_all 'regex'", "Deletes all tables matching the regex."),
+        "describe": ("describe 'table'", "Provides the description of the table."),
+        "put": ("put 'table', 'row', 'column', 'value'", "Puts a cell value at the specified [row,column] in the table."),
+        "get": ("get 'table', 'row'", "Gets the contents of a row or cell."),
+        "scan": ("scan 'table'", "Scans and returns the table's data."),
+        "delete": ("delete 'table', 'row', 'column'", "Deletes a cell value in a table."),
+        "delete_all": ("delete_all 'table', 'row'", "Deletes all cells in a given row."),
+        "count": ("count 'table'", "Counts and returns the number of rows in a table."),
+        "truncate": ("truncate 'table'", "Disables, drops and recreates the specified table."),
+    }
+
+    for command, (usage, description) in commands.items():
+        print(f"{command}:\n\tUsage: {usage}\n\tDescription: {description}\n")
 
 
 class CommandLineInterface:
@@ -29,6 +53,54 @@ class CommandLineInterface:
                             break
                         elif user_input == "help":
                             show_help()
+                        elif user_input == "list":
+                            # TODO: Implement list command
+                            pass
+                        elif re.match(CREATE_PATTERN, user_input):  # Create
+                            # TODO: Implement create command
+                            pass
+                        elif re.match(LIST_PATTERN, user_input):  # List
+                            # TODO: Implement list command
+                            pass
+                        elif re.match(DISABLE_PATTERN, user_input):  # Disable
+                            # TODO: Implement disable command
+                            pass
+                        elif re.match(IS_ENABLED_PATTERN, user_input):  # Is Enabled
+                            # TODO: Implement is_enabled command
+                            pass
+                        elif re.match(ALTER_PATTERN, user_input):  # Alter
+                            # TODO: Implement alter command
+                            pass
+                        elif re.match(DROP_PATTERN, user_input):  # Drop
+                            # TODO: Implement drop command
+                            pass
+                        elif re.match(DROP_ALL_PATTERN, user_input):  # Drop All
+                            # TODO: Implement drop_all command
+                            pass
+                        elif re.match(DESCRIBE_PATTERN, user_input):  # Describe
+                            # TODO: Implement describe command
+                            pass
+                        elif re.match(PUT_PATTERN, user_input):  # Put
+                            # TODO: Implement put command
+                            pass
+                        elif re.match(GET_PATTERN, user_input):  # Get
+                            # TODO: Implement get command
+                            pass
+                        elif re.match(SCAN_PATTERN, user_input):  # Scan
+                            # TODO: Implement scan command
+                            pass
+                        elif re.match(DELETE_PATTERN, user_input):  # Delete
+                            # TODO: Implement delete command
+                            pass
+                        elif re.match(DELETE_ALL_PATTERN, user_input):  # Delete All
+                            # TODO: Implement delete_all command
+                            pass
+                        elif re.match(COUNT_PATTERN, user_input):  # Count
+                            # TODO: Implement count command
+                            pass
+                        elif re.match(TRUNCATE_PATTERN, user_input):  # Truncate
+                            # TODO: Implement truncate command
+                            pass
                         else:
                             print(f"Unknown command: '{user_input}'. Try 'help'.")
 
