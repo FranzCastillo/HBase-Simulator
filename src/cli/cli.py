@@ -1,25 +1,47 @@
 import re
 
-from src.cli.regex_patterns import *
+from cli.regex_patterns import *
+from hbase.hbase import Hbase
 
 
 def show_help():
     commands = {
-        "create": ("create 'table', 'column family'", "Creates a new table with the specified column family."),
+        "create": (
+            "create 'table', 'column family'",
+            "Creates a new table with the specified column family.",
+        ),
         "list": ("list", "Lists all tables in HBase."),
         "disable": ("disable 'table'", "Disables the specified table."),
-        "is_enabled": ("is_enabled 'table'", "Checks if the specified table is enabled."),
-        "alter": ("alter 'table', ...", "Alters the configuration of an existing table."),
+        "is_enabled": (
+            "is_enabled 'table'",
+            "Checks if the specified table is enabled.",
+        ),
+        "alter": (
+            "alter 'table', ...",
+            "Alters the configuration of an existing table.",
+        ),
         "drop": ("drop 'table'", "Deletes a table in HBase."),
         "drop_all": ("drop_all 'regex'", "Deletes all tables matching the regex."),
         "describe": ("describe 'table'", "Provides the description of the table."),
-        "put": ("put 'table', 'row', 'column', 'value'", "Puts a cell value at the specified [row,column] in the table."),
+        "put": (
+            "put 'table', 'row', 'column', 'value'",
+            "Puts a cell value at the specified [row,column] in the table.",
+        ),
         "get": ("get 'table', 'row'", "Gets the contents of a row or cell."),
         "scan": ("scan 'table'", "Scans and returns the table's data."),
-        "delete": ("delete 'table', 'row', 'column'", "Deletes a cell value in a table."),
-        "delete_all": ("delete_all 'table', 'row'", "Deletes all cells in a given row."),
+        "delete": (
+            "delete 'table', 'row', 'column'",
+            "Deletes a cell value in a table.",
+        ),
+        "delete_all": (
+            "delete_all 'table', 'row'",
+            "Deletes all cells in a given row.",
+        ),
         "count": ("count 'table'", "Counts and returns the number of rows in a table."),
-        "truncate": ("truncate 'table'", "Disables, drops and recreates the specified table."),
+        "truncate": (
+            "truncate 'table'",
+            "Disables, drops and recreates the specified table.",
+        ),
     }
 
     for command, (usage, description) in commands.items():
@@ -32,6 +54,8 @@ class CommandLineInterface:
 
     def run(self):
         try:
+            hbase = Hbase()
+
             while True:
                 temp_input = input("$ ")
 
@@ -40,8 +64,10 @@ class CommandLineInterface:
                     print("Please access the hbase shell first by typing 'hbase shell'")
                     continue
 
-                print("HBase Shell; enter 'help<RETURN>' for list of supported commands.")
-                print("Type \"exit<RETURN>\" to leave the HBase Shell")
+                print(
+                    "HBase Shell; enter 'help<RETURN>' for list of supported commands."
+                )
+                print('Type "exit<RETURN>" to leave the HBase Shell')
 
                 # HBase Shell Command Loop
                 n_line = 0  # Line number (amount of commands)
@@ -57,16 +83,30 @@ class CommandLineInterface:
                             # TODO: Implement list command
                             pass
                         elif re.match(CREATE_PATTERN, user_input):  # Create
-                            # TODO: Implement create command
+
+                            table_name, column_families = re.match(
+                                CREATE_PATTERN, user_input
+                            ).groups()
+                            column_families = column_families.split(", ")
+
+                            print(hbase.create_table(table_name, column_families))
                             pass
                         elif re.match(LIST_PATTERN, user_input):  # List
-                            # TODO: Implement list command
+
+                            print(hbase.list_tables())
                             pass
                         elif re.match(DISABLE_PATTERN, user_input):  # Disable
-                            # TODO: Implement disable command
+                            match = re.match(DISABLE_PATTERN, user_input)
+                            table_name = match.group(1)
+                            result = hbase.disable_table(table_name)
+                            print(result)
+
                             pass
                         elif re.match(IS_ENABLED_PATTERN, user_input):  # Is Enabled
-                            # TODO: Implement is_enabled command
+                            match = re.match(IS_ENABLED_PATTERN, user_input)
+                            table_name = match.group(1)
+                            result = hbase.is_table_enabled(table_name)
+                            print(result)
                             pass
                         elif re.match(ALTER_PATTERN, user_input):  # Alter
                             # TODO: Implement alter command
@@ -78,7 +118,10 @@ class CommandLineInterface:
                             # TODO: Implement drop_all command
                             pass
                         elif re.match(DESCRIBE_PATTERN, user_input):  # Describe
-                            # TODO: Implement describe command
+                            match = re.match(DESCRIBE_PATTERN, user_input)
+                            table_name = match.group(1)
+                            result = hbase.describe_table(table_name)
+                            print(result)
                             pass
                         elif re.match(PUT_PATTERN, user_input):  # Put
                             # TODO: Implement put command
