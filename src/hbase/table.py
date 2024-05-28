@@ -10,7 +10,7 @@ class Table:
     def __init__(self, table_name: str = None, column_families: list[str] = None):
         self.metadata = MetaData(  # Create a Metadata object
             name=table_name,
-            column_families=column_families,
+            column_families=[ColumnFamily(name=cf) for cf in column_families],
             id=str(uuid.uuid4()), is_disabled=False,
             created_at=datetime.now(),
             updated_at=datetime.now(),
