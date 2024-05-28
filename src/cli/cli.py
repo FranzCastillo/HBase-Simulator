@@ -113,7 +113,13 @@ class CommandLineInterface:
                             print(f"0 row(s)")
                             continue
                         elif re.match(DROP_ALL_PATTERN, user_input):  # Drop All
-                            # TODO: Implement drop_all command
+                            regex = re.match(DROP_ALL_PATTERN, user_input).group(1)  # Gets the regex
+
+                            n_rows = hbase.drop_all_tables(regex)
+
+                            if n_rows != -1:  # If it was successful
+                                print(f"{n_rows} tables successfully dropped.")
+
                             continue
                         elif re.match(DESCRIBE_PATTERN, user_input):  # Describe
                             # match = re.match(DESCRIBE_PATTERN, user_input)

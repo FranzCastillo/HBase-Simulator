@@ -15,7 +15,7 @@ ALTER_PATTERN = r"^alter\s+'(\w+)',\s*'(\w+)'$"
 
 DROP_PATTERN = r"^drop\s+'(\w+)'$"
 
-DROP_ALL_PATTERN = r"^drop_all$"
+DROP_ALL_PATTERN = r"^drop_all\s+'([^']*)'\s*$"
 
 DESCRIBE_PATTERN = r"^describe\s+'(\w+)'$"
 

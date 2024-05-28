@@ -80,3 +80,32 @@ class Hbase:
         self.tables.remove(table)  # Remove it from the list
 
         os.remove(os.path.join(self.data_dir, f"{table_name}.json"))  # Remove the file
+
+    def drop_all_tables(self, regex: str) -> int:
+        tables = self.list_tables(regex)
+
+        can_be_disabled = True
+        # Print table names
+        for table in tables:
+            text = table
+            if not self.is_table_disabled(text):
+                text += " must be disabled before it can be dropped"
+                can_be_disabled = False
+            print(text)
+
+        if not can_be_disabled:
+            print("Disable the tables before dropping them")
+            return -1
+
+        # Ask for confirmation
+        print(f"Drop the above {len(tables)} tables? (y/n)")
+        answer = input()
+        if answer != "y":
+            print("Tables not dropped")
+            return 0
+
+        # Drop the tables
+        for table in tables:
+            self.drop_table(table)
+
+        return len(tables)
