@@ -3,6 +3,7 @@ import re
 from typing import List
 
 from src.hbase.table import Table
+from src.hbase.table_dataclasses import ColumnFamily
 
 
 def load_tables(data_dir: str) -> List[Table]:
@@ -134,3 +135,20 @@ class Hbase:
         table_description = table_description[:-1]  # Remove the last newline
 
         return table_description, len(table.metadata.column_families)
+
+    def alter_table(self, table_name: str, properties: dict) -> None:
+        table = self.get_table(table_name)
+        cf_name = properties.get('name')
+        if not cf_name:
+            raise Exception("Column family name is required. {name => <cf>}")
+        properties.pop('name')
+
+        cf = self.get_table(table_name).get_column_family(cf_name)
+
+        # If the column family doesn't exist, create it
+        if not cf:
+            self.get_table(table_name).create_column_family(cf_name, properties)
+        else:
+            self.get_table(table_name).update_column_family(cf_name, properties)
+
+        table.save(self.data_dir)

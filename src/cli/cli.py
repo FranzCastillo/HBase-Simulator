@@ -107,10 +107,10 @@ class CommandLineInterface:
                                     dictionary[key] = value
                                 dictionaries.append(dictionary)
 
-                            # Print the table name and the list of dictionaries
-                            print(f"Table name: {table_name}")
-                            print(f"Dictionaries: {dictionaries}")
+                            for dictionary in dictionaries:
+                                hbase.alter_table(table_name, dictionary)
 
+                            print(f"0 row(s)")
                             continue
                         elif re.match(DROP_PATTERN, user_input):  # Drop
                             table_name = re.match(DROP_PATTERN, user_input).group(1)

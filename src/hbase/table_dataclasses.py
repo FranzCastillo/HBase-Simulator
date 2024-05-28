@@ -21,6 +21,10 @@ class ColumnFamily:
     def to_dict(self):
         return asdict(self)
 
+    @classmethod
+    def get_valid_keys(cls):
+        return cls.__annotations__.keys()
+
 
 @dataclass
 class MetaData:

@@ -10,7 +10,8 @@ class Table:
     def __init__(self, table_name: str = None, column_families: list[str] = None):
         self.metadata = MetaData(  # Create a Metadata object
             name=table_name,
-            column_families=[ColumnFamily(name=cf) for cf in column_families or []],  # Create a list of ColumnFamily objects
+            column_families=[ColumnFamily(name=cf) for cf in column_families or []],
+            # Create a list of ColumnFamily objects
             id=str(uuid.uuid4()), is_disabled=False,
             created_at=datetime.now(),
             updated_at=datetime.now(),
@@ -66,3 +67,32 @@ class Table:
     @update_timestamp
     def disable(self) -> None:
         self.metadata.is_disabled = True
+
+    def get_column_family(self, column_family_name: str) -> ColumnFamily | None:
+        for cf in self.metadata.column_families:
+            if cf.name == column_family_name:
+                return cf
+
+        return None
+
+    @update_timestamp
+    def create_column_family(self, column_family_name: str, properties: dict) -> None:
+        if self.get_column_family(column_family_name):
+            raise Exception(f"Column family '{column_family_name}' already exists")
+
+        if not properties:
+            self.metadata.column_families.append(ColumnFamily(name=column_family_name))
+        else:
+            self.metadata.column_families.append(ColumnFamily(name=column_family_name, **properties))
+
+    @update_timestamp
+    def update_column_family(self, column_family_name: str, properties: dict) -> None:
+        cf = self.get_column_family(column_family_name)
+        if not cf:
+            raise Exception(f"Column family '{column_family_name}' not found")
+
+        valid_keys = ColumnFamily.get_valid_keys()
+        for key, value in properties.items():
+            if key not in valid_keys:  # To avoid setting invalid properties
+                raise Exception(f"Invalid property '{key}' for a column family")
+            setattr(cf, key, value)

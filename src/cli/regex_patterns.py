@@ -11,7 +11,7 @@ IS_ENABLED_PATTERN = r"^is_enabled\s+'(\w+)'$"
 
 IS_DISABLED_PATTERN = r"^is_disabled\s+'(\w+)'$"
 
-ALTER_PATTERN = r"^alter\s+'(\w+)'\s*,\s*((\{\s*\w+\s=>\s'.*?'\s*\},?\s)+)$"
+ALTER_PATTERN = r"^alter\s+'(\w+)'\s*,\s*(\{[^{}]+\}(?:\s*,\s*\{[^{}]+\})*)$"
 
 DROP_PATTERN = r"^drop\s+'(\w+)'$"
 
