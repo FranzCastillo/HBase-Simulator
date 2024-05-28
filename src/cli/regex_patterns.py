@@ -9,6 +9,8 @@ ENABLE_PATTERN = r"^enable\s+'(\w+)'$"
 
 IS_ENABLED_PATTERN = r"^is_enabled\s+'(\w+)'$"
 
+IS_DISABLED_PATTERN = r"^is_disabled\s+'(\w+)'$"
+
 ALTER_PATTERN = r"^alter\s+'(\w+)',\s*'(\w+)'$"
 
 DROP_PATTERN = r"^drop\s+'(\w+)'$"

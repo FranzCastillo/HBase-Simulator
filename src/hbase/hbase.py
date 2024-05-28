@@ -49,14 +49,24 @@ class Hbase:
         table = self.get_table(table_name)
         if table.metadata.is_disabled:
             print(f"Table '{table_name}' is already disabled")
+            return
 
         table.disable()
         table.save(self.data_dir)
+
+    def is_table_disabled(self, table_name: str) -> bool:
+        table = self.get_table(table_name)
+        return table.metadata.is_disabled
 
     def enable_table(self, table_name: str) -> None:
         table = self.get_table(table_name)
         if not table.metadata.is_disabled:
             print(f"Table '{table_name}' is already enabled")
+            return
 
         table.enable()
         table.save(self.data_dir)
+
+    def is_table_enabled(self, table_name: str) -> bool:
+        table = self.get_table(table_name)
+        return not table.metadata.is_disabled
