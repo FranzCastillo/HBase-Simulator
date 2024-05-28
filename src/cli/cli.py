@@ -46,8 +46,9 @@ class CommandLineInterface:
 
                 # HBase Shell Command Loop
                 n_line = 0  # Line number (amount of commands)
-                try:
-                    while True:
+
+                while True:
+                    try:
                         user_input = input(f"hbase(main):{n_line:03d}:0> ")
                         if user_input == "exit":
                             break
@@ -145,9 +146,9 @@ class CommandLineInterface:
                             print(f"Unknown command: '{user_input}'. Try 'help'.")
 
                         n_line += 1
-                except KeyboardInterrupt:  # Catch Ctrl+C by leaving the HBase Shell
-                    break
-                except Exception as e:
-                    print(f"Error: {e}")
+                    except KeyboardInterrupt:
+                        break
+                    except Exception as e:
+                        print(f"Error: {e}")
         except KeyboardInterrupt:  # Catch Ctrl+C by exiting the program
             print("Bye!")
