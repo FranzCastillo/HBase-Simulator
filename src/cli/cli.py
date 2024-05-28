@@ -138,7 +138,15 @@ class CommandLineInterface:
 
                             continue
                         elif re.match(PUT_PATTERN, user_input):  # Put
-                            # TODO: Implement put command
+                            match = re.match(PUT_PATTERN, user_input)
+                            table_name = match.group(1)
+                            row_key = match.group(2)
+                            cell = match.group(3)
+                            cf, cq = cell.split(':')
+                            value = match.group(4)
+
+                            print(f"Put {value} successful in table '{table_name}' with row key '{row_key}' and cell '{cf}:{cq}'")
+
                             continue
                         elif re.match(GET_PATTERN, user_input):  # Get
                             # TODO: Implement get command
