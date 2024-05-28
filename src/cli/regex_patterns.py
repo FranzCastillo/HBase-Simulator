@@ -5,6 +5,8 @@ LIST_PATTERN = r"^list(?:\s+'([^']*)')?\s*$"
 
 DISABLE_PATTERN = r"^disable\s+'(\w+)'$"
 
+ENABLE_PATTERN = r"^enable\s+'(\w+)'$"
+
 IS_ENABLED_PATTERN = r"^is_enabled\s+'(\w+)'$"
 
 ALTER_PATTERN = r"^alter\s+'(\w+)',\s*'(\w+)'$"

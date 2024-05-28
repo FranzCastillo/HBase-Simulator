@@ -82,6 +82,13 @@ class CommandLineInterface:
 
                             print(f"0 row(s)")
                             continue
+                        elif re.match(ENABLE_PATTERN, user_input):  # ENABLE
+                            table_name = re.match(ENABLE_PATTERN, user_input).group(1)
+
+                            hbase.enable_table(table_name)
+
+                            print(f"0 row(s)")
+                            continue
                         elif re.match(IS_ENABLED_PATTERN, user_input):  # Is Enabled
                             # match = re.match(IS_ENABLED_PATTERN, user_input)
                             # table_name = match.group(1)
