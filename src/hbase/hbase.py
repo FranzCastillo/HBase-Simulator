@@ -1,7 +1,9 @@
 import os
+import re
 from typing import List
 
 from src.hbase.table import Table
+from src.hbase.table_decorators import update_timestamp
 
 
 def load_tables(data_dir: str) -> List[Table]:
@@ -29,5 +31,22 @@ class Hbase:
 
         self.tables.append(new_table)
 
-    def list_tables(self) -> List[str]:
-        return [table.metadata.name for table in self.tables]
+    def list_tables(self, regex: str = None) -> List[str]:
+        table_names = []
+        for table in self.tables:
+            if not regex or re.match(regex, table.metadata.name):
+                table_names.append(table.metadata.name)
+
+        return table_names
+
+    def get_table(self, table_name: str) -> Table:
+        for table in self.tables:
+            if table.metadata.name == table_name:
+                return table
+
+        raise Exception(f"Table '{table_name}' not found")
+
+    @update_timestamp
+    def disable_table(self, table_name: str) -> None:
+        table = self.get_table(table_name)
+        table.disable()

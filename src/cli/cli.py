@@ -68,65 +68,62 @@ class CommandLineInterface:
                         elif re.match(LIST_PATTERN, user_input):  # List
                             regex = re.match(LIST_PATTERN, user_input).group(1)  # Gets the optional regex
 
-                            tables = hbase.list_tables()
-                            n_rows = 0
+                            tables = hbase.list_tables(regex)
 
                             print("TABLE")
                             for table in tables:
-                                if not regex or re.match(regex, table):
-                                    print(table)
-                                    n_rows += 1
-                            print(f"{n_rows} row(s)")
-                            pass
+                                print(table)
+                            print(f"{len(tables)} row(s)")
+                            continue
                         elif re.match(DISABLE_PATTERN, user_input):  # Disable
-                            # match = re.match(DISABLE_PATTERN, user_input)
-                            # table_name = match.group(1)
-                            # result = hbase.disable_table(table_name)
-                            # print(result)
+                            table_name = re.match(DISABLE_PATTERN, user_input).group(1)
 
-                            pass
+                            hbase.disable_table(table_name)
+
+                            print(f"0 row(s) disabled")
+                            continue
                         elif re.match(IS_ENABLED_PATTERN, user_input):  # Is Enabled
                             # match = re.match(IS_ENABLED_PATTERN, user_input)
                             # table_name = match.group(1)
                             # result = hbase.is_table_enabled(table_name)
                             # print(result)
-                            pass
+                            continue
                         elif re.match(ALTER_PATTERN, user_input):  # Alter
                             # TODO: Implement alter command
-                            pass
+                            continue
                         elif re.match(DROP_PATTERN, user_input):  # Drop
                             # TODO: Implement drop command
-                            pass
+                            continue
                         elif re.match(DROP_ALL_PATTERN, user_input):  # Drop All
                             # TODO: Implement drop_all command
-                            pass
+                            continue
                         elif re.match(DESCRIBE_PATTERN, user_input):  # Describe
                             # match = re.match(DESCRIBE_PATTERN, user_input)
                             # table_name = match.group(1)
                             # result = hbase.describe_table(table_name)
                             # print(result)
-                            pass
+                            continue
                         elif re.match(PUT_PATTERN, user_input):  # Put
                             # TODO: Implement put command
-                            pass
+                            continue
                         elif re.match(GET_PATTERN, user_input):  # Get
                             # TODO: Implement get command
-                            pass
+                            continue
                         elif re.match(SCAN_PATTERN, user_input):  # Scan
                             # TODO: Implement scan command
-                            pass
+                            continue
                         elif re.match(DELETE_PATTERN, user_input):  # Delete
                             # TODO: Implement delete command
-                            pass
+                            continue
                         elif re.match(DELETE_ALL_PATTERN, user_input):  # Delete All
                             # TODO: Implement delete_all command
-                            pass
+                            continue
                         elif re.match(COUNT_PATTERN, user_input):  # Count
                             # TODO: Implement count command
-                            pass
+                            continue
                         elif re.match(TRUNCATE_PATTERN, user_input):  # Truncate
                             # TODO: Implement truncate command
-                            pass
+                            continue
                         else:
                             print(f"Unknown command: '{user_input}'. Try 'help'.")
 
