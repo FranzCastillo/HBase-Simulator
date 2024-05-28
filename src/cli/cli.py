@@ -105,7 +105,11 @@ class CommandLineInterface:
                             # TODO: Implement alter command
                             continue
                         elif re.match(DROP_PATTERN, user_input):  # Drop
-                            # TODO: Implement drop command
+                            table_name = re.match(DROP_PATTERN, user_input).group(1)
+
+                            hbase.drop_table(table_name)
+
+                            print(f"0 row(s)")
                             continue
                         elif re.match(DROP_ALL_PATTERN, user_input):  # Drop All
                             # TODO: Implement drop_all command

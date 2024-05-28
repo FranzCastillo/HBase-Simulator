@@ -70,3 +70,13 @@ class Hbase:
     def is_table_enabled(self, table_name: str) -> bool:
         table = self.get_table(table_name)
         return not table.metadata.is_disabled
+
+    def drop_table(self, table_name: str) -> None:
+        table = self.get_table(table_name)
+
+        if not table.metadata.is_disabled:
+            raise Exception(f"Table '{table_name}' must be disabled before it can be dropped")
+
+        self.tables.remove(table)  # Remove it from the list
+
+        os.remove(os.path.join(self.data_dir, f"{table_name}.json"))  # Remove the file
