@@ -80,7 +80,7 @@ class CommandLineInterface:
 
                             hbase.disable_table(table_name)
 
-                            print(f"0 row(s) disabled")
+                            print(f"0 row(s)")
                             continue
                         elif re.match(IS_ENABLED_PATTERN, user_input):  # Is Enabled
                             # match = re.match(IS_ENABLED_PATTERN, user_input)

@@ -3,7 +3,6 @@ import re
 from typing import List
 
 from src.hbase.table import Table
-from src.hbase.table_decorators import update_timestamp
 
 
 def load_tables(data_dir: str) -> List[Table]:
@@ -46,7 +45,10 @@ class Hbase:
 
         raise Exception(f"Table '{table_name}' not found")
 
-    @update_timestamp
     def disable_table(self, table_name: str) -> None:
         table = self.get_table(table_name)
+        if table.metadata.is_disabled:
+            print(f"Table '{table_name}' is already disabled")
+
         table.disable()
+        table.save(self.data_dir)
