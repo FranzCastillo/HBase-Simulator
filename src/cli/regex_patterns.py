@@ -1,7 +1,7 @@
 # DDL: Data Definition Language
 CREATE_PATTERN = r"^create\s+'(\w+)'\s*,\s*((?:'\w+'\s*,\s*)*'\w+')"
 
-LIST_PATTERN = r"^list(\s*)$"
+LIST_PATTERN = r"^list(?:\s+'([^']*)')?\s*$"
 
 DISABLE_PATTERN = r"^disable\s+'(\w+)'$"
 

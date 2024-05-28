@@ -66,11 +66,17 @@ class CommandLineInterface:
 
                             continue
                         elif re.match(LIST_PATTERN, user_input):  # List
+                            regex = re.match(LIST_PATTERN, user_input).group(1)  # Gets the optional regex
+
                             tables = hbase.list_tables()
+                            n_rows = 0
+
                             print("TABLE")
                             for table in tables:
-                                print(table)
-                            print(f"{len(tables)} row(s)")
+                                if not regex or re.match(regex, table):
+                                    print(table)
+                                    n_rows += 1
+                            print(f"{n_rows} row(s)")
                             pass
                         elif re.match(DISABLE_PATTERN, user_input):  # Disable
                             # match = re.match(DISABLE_PATTERN, user_input)
