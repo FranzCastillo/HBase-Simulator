@@ -96,3 +96,11 @@ class Table:
             if key not in valid_keys:  # To avoid setting invalid properties
                 raise Exception(f"Invalid property '{key}' for a column family")
             setattr(cf, key, value)
+
+    @update_timestamp
+    def delete_column_family(self, column_family_name: str) -> None:
+        cf = self.get_column_family(column_family_name)
+        if not cf:
+            raise Exception(f"Column family '{column_family_name}' not found")
+
+        self.metadata.column_families.remove(cf)

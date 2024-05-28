@@ -143,8 +143,17 @@ class Hbase:
             raise Exception("Column family name is required. {name => <cf>}")
         properties.pop('name')
 
+        # Handle Column Family Delete
+        if properties.get('method') == 'delete':
+            # Remove the column family from the list
+            table.metadata.column_families = [cf for cf in table.metadata.column_families if cf.name != cf_name]
+
+            table.save(self.data_dir)
+            return
+
         cf = self.get_table(table_name).get_column_family(cf_name)
 
+        # Handle create and update
         # If the column family doesn't exist, create it
         if not cf:
             self.get_table(table_name).create_column_family(cf_name, properties)
