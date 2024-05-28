@@ -10,7 +10,7 @@ class Table:
     def __init__(self, table_name: str = None, column_families: list[str] = None):
         self.metadata = MetaData(  # Create a Metadata object
             name=table_name,
-            column_families=[ColumnFamily(name=cf) for cf in column_families],
+            column_families=[ColumnFamily(name=cf) for cf in column_families or []],  # Create a list of ColumnFamily objects
             id=str(uuid.uuid4()), is_disabled=False,
             created_at=datetime.now(),
             updated_at=datetime.now(),
@@ -25,7 +25,7 @@ class Table:
 
         self.metadata = MetaData(
             name=data["metadata"]["name"],
-            column_families=data["metadata"]["column_families"],
+            column_families=[ColumnFamily(**cf) for cf in data["metadata"]["column_families"]],
             id=data["metadata"]["id"],
             is_disabled=data["metadata"]["is_disabled"],
             created_at=datetime.fromisoformat(data["metadata"]["created_at"]),
@@ -38,6 +38,7 @@ class Table:
     def to_json(self) -> str:
         # Convert the datetime objects to strings
         metadata_dict = self.metadata.__dict__.copy()
+        metadata_dict["column_families"] = [cf.__dict__ for cf in metadata_dict["column_families"]]
         metadata_dict["created_at"] = self.metadata.created_at.isoformat()
         metadata_dict["updated_at"] = self.metadata.updated_at.isoformat()
         json_str = {"metadata": metadata_dict, "data": [], }

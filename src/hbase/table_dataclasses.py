@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from datetime import datetime
 from typing import List
 
@@ -7,7 +7,7 @@ from typing import List
 class ColumnFamily:
     name: str
     data_block_encoding: str = 'NONE'
-    bloom_filter_type: str = 'ROW'
+    bloomfilter: str = 'ROW'
     replication_scope: str = '0'
     versions: str = '1'
     compression: str = 'NONE'
@@ -17,6 +17,9 @@ class ColumnFamily:
     block_size: str = '65536'
     in_memory: str = 'false'
     block_cache: str = 'true'
+
+    def to_dict(self):
+        return asdict(self)
 
 
 @dataclass
