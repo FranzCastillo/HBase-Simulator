@@ -2,27 +2,7 @@ import re
 
 from src.cli.regex_patterns import *
 from src.hbase.hbase import Hbase
-
-
-def show_help():
-    commands = {"create": ("create 'table', 'column family'", "Creates a new table with the specified column family.",),
-                "list": ("list", "Lists all tables in HBase."),
-                "disable": ("disable 'table'", "Disables the specified table."),
-                "is_enabled": ("is_enabled 'table'", "Checks if the specified table is enabled.",),
-                "alter": ("alter 'table', ...", "Alters the configuration of an existing table.",),
-                "drop": ("drop 'table'", "Deletes a table in HBase."),
-                "drop_all": ("drop_all 'regex'", "Deletes all tables matching the regex."),
-                "describe": ("describe 'table'", "Provides the description of the table."), "put": (
-            "put 'table', 'row', 'column', 'value'", "Puts a cell value at the specified [row,column] in the table.",),
-                "get": ("get 'table', 'row'", "Gets the contents of a row or cell."),
-                "scan": ("scan 'table'", "Scans and returns the table's data."),
-                "delete": ("delete 'table', 'row', 'column'", "Deletes a cell value in a table.",),
-                "delete_all": ("delete_all 'table', 'row'", "Deletes all cells in a given row.",),
-                "count": ("count 'table'", "Counts and returns the number of rows in a table."),
-                "truncate": ("truncate 'table'", "Disables, drops and recreates the specified table.",), }
-
-    for command, (usage, description) in commands.items():
-        print(f"{command}:\n\tUsage: {usage}\n\tDescription: {description}\n")
+from src.cli.help_dict import COMMANDS
 
 
 class CommandLineInterface:
@@ -53,7 +33,9 @@ class CommandLineInterface:
                         if user_input == "exit":
                             break
                         elif user_input == "help":
-                            show_help()
+                            for command, (usage, description) in COMMANDS.items():
+                                print(f"{command}:\n\tUsage: {usage}\n\tDescription: {description}\n")
+                            continue
                         elif re.match(CREATE_PATTERN, user_input):  # Create
                             table_name, column_families = re.match(CREATE_PATTERN, user_input).groups()
                             column_families = column_families.split(", ")
