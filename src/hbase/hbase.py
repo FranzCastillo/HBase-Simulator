@@ -109,3 +109,28 @@ class Hbase:
             self.drop_table(table)
 
         return len(tables)
+
+    def describe_table(self, table_name: str) -> tuple[str, int]:
+        table = self.get_table(table_name)
+
+        table_description = f"Table {table.metadata.name} is {'DISABLED' if table.metadata.is_disabled else 'ENABLED'}\n"
+        table_description += table.metadata.name
+        table_description += "\nCOLUMN FAMILIES DESCRIPTION\n"
+        for column_family in table.metadata.column_families:
+            table_description += "{"
+            table_description += f"NAME => '{column_family.name}', "
+            table_description += f"DATA_BLOCK_ENCODING => '{column_family.data_block_encoding}', "
+            table_description += f"BLOOMFILTER => '{column_family.bloomfilter}', "
+            table_description += f"REPLICATION_SCOPE => '{column_family.replication_scope}', "
+            table_description += f"VERSIONS => '{column_family.versions}', "
+            table_description += f"COMPRESSION => '{column_family.compression}', "
+            table_description += f"MIN_VERSIONS => '{column_family.min_versions}', "
+            table_description += f"TTL => '{column_family.ttl}', "
+            table_description += f"KEEP_DELETED_CELLS => '{column_family.keep_deleted_cells}', "
+            table_description += f"BLOCK_SIZE => '{column_family.block_size}', "
+            table_description += f"IN_MEMORY => '{column_family.in_memory}', "
+            table_description += f"BLOCK_CACHE => '{column_family.block_cache}'"
+            table_description += "}\n"
+        table_description = table_description[:-1]  # Remove the last newline
+
+        return table_description, len(table.metadata.column_families)

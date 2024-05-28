@@ -122,10 +122,13 @@ class CommandLineInterface:
 
                             continue
                         elif re.match(DESCRIBE_PATTERN, user_input):  # Describe
-                            # match = re.match(DESCRIBE_PATTERN, user_input)
-                            # table_name = match.group(1)
-                            # result = hbase.describe_table(table_name)
-                            # print(result)
+                            table_name = re.match(DESCRIBE_PATTERN, user_input).group(1)
+
+                            table_description, n_rows = hbase.describe_table(table_name)
+
+                            print(table_description)
+                            print(f"{n_rows} row(s)")
+
                             continue
                         elif re.match(PUT_PATTERN, user_input):  # Put
                             # TODO: Implement put command
