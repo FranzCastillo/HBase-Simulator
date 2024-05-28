@@ -85,7 +85,32 @@ class CommandLineInterface:
                             print(f"0 row(s)")
                             continue
                         elif re.match(ALTER_PATTERN, user_input):  # Alter
-                            # TODO: Implement alter command
+                            match = re.match(ALTER_PATTERN, user_input)
+                            table_name = match.group(1)
+                            dicts_string = match.group(2)
+
+                            dict_strings = re.findall(r"\{.*?\}", dicts_string)
+
+                            # Initialize an empty list to hold the dictionaries
+                            dictionaries = []
+
+                            # For each dictionary string
+                            for dict_string in dict_strings:
+                                # Remove the curly braces and split by '=>'
+                                pairs = dict_string[1:-1].split(', ')
+                                dictionary = {}
+                                for pair in pairs:
+                                    # Split the pair by '=>'
+                                    key, value = pair.split(' => ')
+                                    value = value.strip("'")
+                                    # Add the key-value pair to the dictionary
+                                    dictionary[key] = value
+                                dictionaries.append(dictionary)
+
+                            # Print the table name and the list of dictionaries
+                            print(f"Table name: {table_name}")
+                            print(f"Dictionaries: {dictionaries}")
+
                             continue
                         elif re.match(DROP_PATTERN, user_input):  # Drop
                             table_name = re.match(DROP_PATTERN, user_input).group(1)
