@@ -39,8 +39,11 @@ class MetaData:
 
 @dataclass
 class RowEntry:
-    rowKey: str
+    row_key: str
     column_family: str
     column_qualifier: str
     value: str
     timestamp: datetime
+
+    def to_dict(self):
+        return asdict(self)

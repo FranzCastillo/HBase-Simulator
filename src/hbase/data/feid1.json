@@ -34,8 +34,30 @@
         "id": "80ca3a55-0d09-41be-889e-da882c378480",
         "is_disabled": false,
         "created_at": "2024-05-27T23:30:16.249931",
-        "updated_at": "2024-05-28T15:48:55.191426",
-        "n_rows": 0
+        "updated_at": "2024-05-28T16:49:19.130957",
+        "n_rows": 3
     },
-    "data": []
+    "data": [
+        {
+            "row_key": "aaaa",
+            "column_family": "wow",
+            "column_qualifier": "raiting",
+            "value": "5",
+            "timestamp": "2024-05-28T16:49:19.130957"
+        },
+        {
+            "row_key": "hey_mor",
+            "column_family": "wow",
+            "column_qualifier": "raiting",
+            "value": "5",
+            "timestamp": "2024-05-28T16:48:45.424252"
+        },
+        {
+            "row_key": "zzzz",
+            "column_family": "wow",
+            "column_qualifier": "raiting",
+            "value": "5",
+            "timestamp": "2024-05-28T16:49:11.399364"
+        }
+    ]
 }

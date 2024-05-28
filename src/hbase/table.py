@@ -1,6 +1,7 @@
 import json
 import os
-import uuid
+import uuid  # To create unique IDs
+import bisect  # To insert elements in a sorted list
 
 from src.hbase.table_dataclasses import *
 from src.hbase.table_decorators import update_timestamp
@@ -104,3 +105,25 @@ class Table:
             raise Exception(f"Column family '{column_family_name}' not found")
 
         self.metadata.column_families.remove(cf)
+
+    @update_timestamp
+    def put(self, row_key: str, column_family: str, column: str, value: str) -> None:
+        if not self.data:
+            self.data = []
+
+        entry = RowEntry(
+            row_key=row_key,
+            column_family=column_family,
+            column_qualifier=column,
+            value=value,
+            timestamp=datetime.now(),
+        )
+
+        # Use bisect to find the insertion point for the new entry
+        i = bisect.bisect_left([e.row_key for e in self.data], entry.row_key)
+
+        self.data.insert(i, entry)
+
+        self.metadata.n_rows += 1
+
+

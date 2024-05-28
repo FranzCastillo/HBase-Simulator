@@ -145,8 +145,9 @@ class CommandLineInterface:
                             cf, cq = cell.split(':')
                             value = match.group(4)
 
-                            print(f"Put {value} successful in table '{table_name}' with row key '{row_key}' and cell '{cf}:{cq}'")
+                            hbase.put(table_name, row_key, cf, cq, value)
 
+                            print(f"0 row(s)")
                             continue
                         elif re.match(GET_PATTERN, user_input):  # Get
                             # TODO: Implement get command

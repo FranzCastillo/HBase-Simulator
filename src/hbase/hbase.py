@@ -161,3 +161,10 @@ class Hbase:
             self.get_table(table_name).update_column_family(cf_name, properties)
 
         table.save(self.data_dir)
+
+    def put(self, table_name: str, row_key: str, column_family: str, column_qualifier: str, value: str) -> None:
+        table = self.get_table(table_name)
+
+        table.put(row_key, column_family, column_qualifier, value)
+
+        table.save(self.data_dir)
