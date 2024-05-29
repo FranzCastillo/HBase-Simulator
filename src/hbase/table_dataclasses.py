@@ -1,6 +1,6 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
-from typing import List
+from typing import List, Any
 
 
 @dataclass
@@ -41,9 +41,13 @@ class MetaData:
 class RowEntry:
     row_key: str
     column_family: str
-    column_qualifier: str
-    value: str
-    timestamp: datetime
+    column_qualifiers: dict[str, Any]
 
     def to_dict(self):
-        return asdict(self)
+        return {
+            self.row_key: {
+                self.column_family: {
+                    self.column_qualifiers
+                }
+            }
+        }

@@ -1,10 +1,18 @@
+import bisect  # To insert elements in a sorted list
 import json
 import os
 import uuid  # To create unique IDs
-import bisect  # To insert elements in a sorted list
 
 from src.hbase.table_dataclasses import *
 from src.hbase.table_decorators import update_timestamp
+
+
+def parse_data_to_dict(data: list[RowEntry]) -> dict:
+    new_dict = {}
+    for entry in data:
+        new_dict[entry.row_key] = {entry.column_family: entry.column_qualifiers}
+
+    return new_dict
 
 
 class Table:
@@ -19,7 +27,7 @@ class Table:
             n_rows=0,
         )
 
-        self.data: List[RowEntry] | None = None  # Create a list of RowEntry objects
+        self.data: List[RowEntry] = []  # Create a list of RowEntry objects
 
     def load(self, file_path: str) -> None:
         with open(file_path, "r") as f:
@@ -35,6 +43,7 @@ class Table:
             n_rows=data["metadata"]["n_rows"],
         )
 
+        # TODO: Load data as RowEntries
         self.data = []
 
     def to_json(self) -> str:
@@ -43,13 +52,7 @@ class Table:
         metadata_dict["column_families"] = [cf.__dict__ for cf in metadata_dict["column_families"]]
         metadata_dict["created_at"] = self.metadata.created_at.isoformat()
         metadata_dict["updated_at"] = self.metadata.updated_at.isoformat()
-        json_str = {"metadata": metadata_dict, "data": [], }
-        if self.data:
-            # Convert the datetime objects in each row to strings
-            for row in self.data:
-                row_dict = row.__dict__.copy()
-                row_dict["timestamp"] = row.timestamp.isoformat()
-                json_str["data"].append(row_dict)
+        json_str = {"metadata": metadata_dict, "data": parse_data_to_dict(self.data)}
 
         return json.dumps(json_str, indent=4)
 
@@ -107,23 +110,43 @@ class Table:
         self.metadata.column_families.remove(cf)
 
     @update_timestamp
-    def put(self, row_key: str, column_family: str, column: str, value: str) -> None:
-        if not self.data:
-            self.data = []
+    def put(self, row_key: str, column_family: str, column_qualifier: str, value: str) -> None:
+        # Check if the column family exists
+        if not self.get_column_family(column_family):
+            raise Exception(f"Column family '{column_family}' not found")
 
+        # If the row key already exists, update the entry
+        for entry in self.data:
+            if entry.row_key == row_key and entry.column_family == column_family:
+                # If the column qualifier already exists, update the value
+                if column_qualifier in entry.column_qualifiers:
+                    entry.column_qualifiers[column_qualifier]["n_timestmaps"] += 1
+                    entry.column_qualifiers[column_qualifier][
+                        f"timestamp{entry.column_qualifiers[column_qualifier]['n_timestmaps']}"
+                    ] = value
+                    return
+
+                # If the column qualifier does not exist, create it
+                entry.column_qualifiers[column_qualifier] = {
+                    "n_timestmaps": 1,
+                    "timestamp1": value
+                }
+                return
+
+        # If the row key does not exist, create a new entry
         entry = RowEntry(
             row_key=row_key,
             column_family=column_family,
-            column_qualifier=column,
-            value=value,
-            timestamp=datetime.now(),
+            column_qualifiers={
+                column_qualifier: {
+                    "n_timestmaps": 1,
+                    "timestamp1": value
+                }
+            }
         )
 
         # Use bisect to find the insertion point for the new entry
         i = bisect.bisect_left([e.row_key for e in self.data], entry.row_key)
-
         self.data.insert(i, entry)
 
         self.metadata.n_rows += 1
-
-
