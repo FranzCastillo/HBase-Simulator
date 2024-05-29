@@ -34,20 +34,37 @@
         "id": "80ca3a55-0d09-41be-889e-da882c378480",
         "is_disabled": false,
         "created_at": "2024-05-27T23:30:16.249931",
-        "updated_at": "2024-05-28T18:13:30.169110",
-        "n_rows": 6
+        "updated_at": "2024-05-28T19:53:39.783630",
+        "n_rows": 8
     },
     "data": {
         "hey_mor": {
             "wow1": {
-                "rating": {
-                    "n_timestmaps": 2,
-                    "timestamp1": "3",
-                    "timestamp2": "4"
-                },
                 "ratings": {
-                    "n_timestmaps": 1,
-                    "timestamp1": "3"
+                    "n_versions": 4,
+                    "version1": {
+                        "timestamp": "2024-05-28T19:51:10.790919",
+                        "value": "5"
+                    },
+                    "version2": {
+                        "timestamp": "2024-05-28T19:51:31.421951",
+                        "value": "5"
+                    },
+                    "version3": {
+                        "timestamp": "2024-05-28T19:51:53.045943",
+                        "value": "4"
+                    },
+                    "version4": {
+                        "timestamp": "2024-05-28T19:53:27.433843",
+                        "value": "3"
+                    }
+                },
+                "ratingsssss": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-28T19:53:39.783630",
+                        "value": "5"
+                    }
                 }
             }
         }

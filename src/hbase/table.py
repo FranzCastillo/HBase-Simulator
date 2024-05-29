@@ -120,16 +120,22 @@ class Table:
             if entry.row_key == row_key and entry.column_family == column_family:
                 # If the column qualifier already exists, update the value
                 if column_qualifier in entry.column_qualifiers:
-                    entry.column_qualifiers[column_qualifier]["n_timestmaps"] += 1
+                    entry.column_qualifiers[column_qualifier]["n_versions"] += 1
                     entry.column_qualifiers[column_qualifier][
-                        f"timestamp{entry.column_qualifiers[column_qualifier]['n_timestmaps']}"
-                    ] = value
+                        f"version{entry.column_qualifiers[column_qualifier]['n_versions']}"
+                    ] = {
+                        "timestamp": datetime.now().isoformat(),
+                        "value": value
+                    }
                     return
 
                 # If the column qualifier does not exist, create it
                 entry.column_qualifiers[column_qualifier] = {
-                    "n_timestmaps": 1,
-                    "timestamp1": value
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": datetime.now().isoformat(),
+                        "value": value
+                    }
                 }
                 return
 
@@ -139,8 +145,11 @@ class Table:
             column_family=column_family,
             column_qualifiers={
                 column_qualifier: {
-                    "n_timestmaps": 1,
-                    "timestamp1": value
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": datetime.now().isoformat(),
+                        "value": value
+                    }
                 }
             }
         )
