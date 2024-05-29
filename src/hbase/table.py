@@ -206,7 +206,7 @@ class Table:
         raise Exception(f"Row key '{row_key}' not found")
 
     @update_timestamp
-    def delete_all(self, row_key: str) -> None:
+    def delete_all(self, row_key: str) -> int:
         if self.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
 
@@ -217,19 +217,22 @@ class Table:
             self.data.remove(entry)
             self.metadata.n_rows -= 1
 
-    def scan(self) -> None:
+        return len(entries_to_delete)
+
+    def scan(self) -> str:
         if self.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
 
-        print("ROW \t\t\t COLUMN+CELL")
+        scan_str = "ROW \t\t\t COLUMN+CELL\n"
         for entry in self.data:
             for cq, val in entry.column_qualifiers.items():
                 for version, data in val.items():
                     if version == "n_versions":
                         continue
 
-                    print(
-                        f"{entry.row_key}\t\t\t column={entry.column_family}:{cq}, timestamp={data['timestamp']}, value={data['value']}")
+                    scan_str += f"{entry.row_key}\t\t\t column={entry.column_family}:{cq}, timestamp={data['timestamp']}, value={data['value']}\n"
+
+        return scan_str
 
     def count(self) -> int:
         if self.metadata.is_disabled:

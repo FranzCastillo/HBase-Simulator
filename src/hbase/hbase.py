@@ -22,7 +22,7 @@ class Hbase:
         self.data_dir = data_dir
         self.tables: List[Table] = load_tables(data_dir)
 
-    def create_table(self, table_name, column_families) -> None:
+    def create_table(self, table_name: str, column_families: list[str]) -> None:
         new_table = Table(table_name, column_families)
 
         # Save the table to the data directory
@@ -94,8 +94,7 @@ class Hbase:
             print(text)
 
         if not can_be_disabled:
-            print("Disable the tables before dropping them")
-            return -1
+            raise Exception("Tables must be disabled before they can be dropped")
 
         # Ask for confirmation
         print(f"Drop the above {len(tables)} tables? (y/n)")
@@ -186,27 +185,29 @@ class Hbase:
 
         table.save(self.data_dir)
 
-    def delete_all(self, table_name: str, row_key: str) -> None:
+    def delete_all(self, table_name: str, row_key: str) -> int:
         table = self.get_table(table_name)
 
-        table.delete_all(row_key)
+        n_rows = table.delete_all(row_key)
 
         table.save(self.data_dir)
 
-    def scan(self, table_name: str) -> None:
+        return n_rows
+
+    def scan(self, table_name: str) -> str:
         table = self.get_table(table_name)
 
-        table.scan()
+        return table.scan()
 
     def count(self, table_name: str) -> int:
-        table = self.get_table(table_name)
-        count = table.count()
+        return self.get_table(table_name).count()
 
-    def get_row(self, table_name: str, row_key: str, column_family: str = None, column_qualifier: str = None) -> str:
+    def get_row(self, table_name: str, row_key: str, column_family: str = None, column_qualifier: str = None) -> tuple[str, int]:
         table = self.get_table(table_name)
         if table.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
 
+        n_rows = 0
         return_str = "COLUMN\t\t\t\t\t\tCELL\n"
         if not column_family or not column_qualifier:  # Show all columns
             for entry in table.data:
@@ -217,8 +218,9 @@ class Hbase:
                             if version == "n_versions" or version != last_version:
                                 continue
                             return_str += f"{entry.column_family}:{cq}\t\t\t\ttimestamp={value['timestamp']}, value={value['value']}\n"
+                            n_rows += 1
 
-            return return_str
+            return return_str, n_rows
 
         # Show only the specified column
         for entry in table.data:
@@ -231,4 +233,4 @@ class Hbase:
                             continue
                         return_str += f"{entry.column_family}:{column_qualifier}\t\t\t\ttimestamp={value['timestamp']}, value={value['value']}\n"
 
-        return return_str
+        return return_str, 1
