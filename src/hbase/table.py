@@ -95,6 +95,8 @@ class Table:
 
     @update_timestamp
     def create_column_family(self, column_family_name: str, properties: dict) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
         if self.get_column_family(column_family_name):
             raise Exception(f"Column family '{column_family_name}' already exists")
 
@@ -105,6 +107,9 @@ class Table:
 
     @update_timestamp
     def update_column_family(self, column_family_name: str, properties: dict) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+
         cf = self.get_column_family(column_family_name)
         if not cf:
             raise Exception(f"Column family '{column_family_name}' not found")
@@ -125,6 +130,9 @@ class Table:
 
     @update_timestamp
     def put(self, row_key: str, column_family: str, column_qualifier: str, value: str) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+
         # Check if the column family exists
         if not self.get_column_family(column_family):
             raise Exception(f"Column family '{column_family}' not found")

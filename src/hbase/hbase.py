@@ -146,7 +146,7 @@ class Hbase:
         # Handle Column Family Delete
         if properties.get('method') == 'delete':
             # Remove the column family from the list
-            table.metadata.column_families = [cf for cf in table.metadata.column_families if cf.name != cf_name]
+            table.delete_column_family(cf_name)
 
             table.save(self.data_dir)
             return
