@@ -22,7 +22,7 @@ DESCRIBE_PATTERN = r"^describe\s+'(\w+)'$"
 # DML: Data Manipulation Language
 PUT_PATTERN = r"^put\s+'(\w+)'\s*,\s*'(\w+)'\s*,\s*'(\w+:\w+)'\s*,\s*'([^']*)'$"
 
-GET_PATTERN = r"^get"
+GET_PATTERN = r"^get\s+'(\w+)'\s*,\s*'(\w+)'\s*(?:,\s*\{COLUMN\s*=>\s*'(\w+:\w+)'\s*\})?$"
 
 SCAN_PATTERN = r"^scan\s+'(\w+)'"
 

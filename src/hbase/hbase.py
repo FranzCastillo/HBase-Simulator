@@ -1,10 +1,8 @@
 import os
 import re
 from typing import List
-import time
 
-from hbase.table import Table
-from hbase.table_dataclasses import ColumnFamily
+from src.hbase.table import Table
 
 
 def load_tables(data_dir: str) -> List[Table]:
@@ -111,9 +109,8 @@ class Hbase:
             self.drop_table(table)
 
         return len(tables)
-    
+
     def truncate_table(self, table_name: str) -> None:
-        start = time.time()
         table = self.get_table(table_name)
 
         cfs = table.metadata.column_families
@@ -123,7 +120,6 @@ class Hbase:
         print(f" - Truncating table...")
         self.drop_table(table_name)
         self.create_table(table_name, [cf.name for cf in cfs])
-        print(f"0 row(s) in {time.time() - start:.4f} seconds")
 
     def describe_table(self, table_name: str) -> tuple[str, int]:
         table = self.get_table(table_name)
@@ -189,7 +185,7 @@ class Hbase:
         table.delete(row_key, column_family, column_qualifier)
 
         table.save(self.data_dir)
-    
+
     def delete_all(self, table_name: str, row_key: str) -> None:
         table = self.get_table(table_name)
 
@@ -203,10 +199,36 @@ class Hbase:
         table.scan()
 
     def count(self, table_name: str) -> int:
-        start = time.time()
         table = self.get_table(table_name)
         count = table.count()
-        end = time.time()
 
+    def get_row(self, table_name: str, row_key: str, column_family: str = None, column_qualifier: str = None) -> str:
+        table = self.get_table(table_name)
+        if table.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
 
-        print(f"{count} row(s) in {end - start:.4f} seconds \n\n=> {count}")
+        return_str = "COLUMN\t\t\t\t\t\tCELL\n"
+        if not column_family or not column_qualifier:  # Show all columns
+            for entry in table.data:
+                if entry.row_key == row_key:
+                    for cq, values in entry.column_qualifiers.items():
+                        last_version = f"version{values['n_versions']}"
+                        for version, value in values.items():
+                            if version == "n_versions" or version != last_version:
+                                continue
+                            return_str += f"{entry.column_family}:{cq}\t\t\t\ttimestamp={value['timestamp']}, value={value['value']}\n"
+
+            return return_str
+
+        # Show only the specified column
+        for entry in table.data:
+            if entry.row_key == row_key and entry.column_family == column_family:
+                if column_qualifier in entry.column_qualifiers:
+                    values = entry.column_qualifiers[column_qualifier]
+                    last_version = f"version{values['n_versions']}"
+                    for version, value in values.items():
+                        if version == "n_versions" or version != last_version:
+                            continue
+                        return_str += f"{entry.column_family}:{column_qualifier}\t\t\t\ttimestamp={value['timestamp']}, value={value['value']}\n"
+
+        return return_str

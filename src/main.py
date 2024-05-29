@@ -1,4 +1,4 @@
-from cli.cli import CommandLineInterface as CLI
+from src.cli.cli import CommandLineInterface as CLI
 
 
 def main():

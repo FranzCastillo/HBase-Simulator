@@ -1,8 +1,8 @@
 import re
 
-from cli.regex_patterns import *
-from hbase.hbase import Hbase
-from cli.help_dict import COMMANDS
+from src.cli.regex_patterns import *
+from src.hbase.hbase import Hbase
+from src.cli.help_dict import COMMANDS
 
 
 class CommandLineInterface:
@@ -150,7 +150,12 @@ class CommandLineInterface:
                             print(f"0 row(s)")
                             continue
                         elif re.match(GET_PATTERN, user_input):  # Get
-                            # TODO: Implement get command
+                            match = re.match(GET_PATTERN, user_input)
+                            table_name = match.group(1)
+                            row_key = match.group(2)
+                            cf, cq = match.group(3).split(':') if match.group(3) else (None, None)
+
+                            print(hbase.get_row(table_name, row_key, cf, cq))
                             continue
                         elif re.match(SCAN_PATTERN, user_input):  # Scan
                             match = re.match(SCAN_PATTERN, user_input)

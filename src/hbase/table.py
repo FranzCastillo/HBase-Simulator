@@ -3,8 +3,9 @@ import json
 import os
 import uuid  # To create unique IDs
 from typing import Union
-from hbase.table_dataclasses import *
-from hbase.table_decorators import update_timestamp
+
+from src.hbase.table_dataclasses import *
+from src.hbase.table_decorators import update_timestamp
 
 
 def parse_data_to_dict(data: list[RowEntry]) -> dict:
@@ -203,30 +204,35 @@ class Table:
                     return
 
         raise Exception(f"Row key '{row_key}' not found")
-    
+
     @update_timestamp
     def delete_all(self, row_key: str) -> None:
         if self.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+
         # Find the entries to delete
         entries_to_delete = [entry for entry in self.data if entry.row_key == row_key]
 
         for entry in entries_to_delete:
             self.data.remove(entry)
             self.metadata.n_rows -= 1
-    
+
     def scan(self) -> None:
         if self.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+
         print("ROW \t\t\t COLUMN+CELL")
         for entry in self.data:
             for cq, val in entry.column_qualifiers.items():
                 for version, data in val.items():
                     if version == "n_versions":
                         continue
-                
-                    print(f"{entry.row_key}\t\t\t column={entry.column_family}:{cq}, timestamp={data['timestamp']}, value={data['value']}")
+
+                    print(
+                        f"{entry.row_key}\t\t\t column={entry.column_family}:{cq}, timestamp={data['timestamp']}, value={data['value']}")
+
     def count(self) -> int:
         if self.metadata.is_disabled:
             raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+
         return self.metadata.n_rows

@@ -1,0 +1,54 @@
+{
+    "metadata": {
+        "name": "cantantes",
+        "column_families": [
+            {
+                "name": "perfil",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            }
+        ],
+        "id": "12866b31-e79c-433d-a9b5-9820a0d9367c",
+        "is_disabled": false,
+        "created_at": "2024-05-28T20:45:37.659701",
+        "updated_at": "2024-05-28T21:07:06.635746",
+        "n_rows": 1
+    },
+    "data": {
+        "mora": {
+            "perfil": {
+                "oyentes": {
+                    "n_versions": 2,
+                    "version1": {
+                        "timestamp": "2024-05-28T20:46:14.417924",
+                        "value": "20,000,000"
+                    },
+                    "version2": {
+                        "timestamp": "2024-05-28T21:02:57.200679",
+                        "value": "19,924,482"
+                    }
+                },
+                "album": {
+                    "n_versions": 2,
+                    "version1": {
+                        "timestamp": "2024-05-28T21:01:27.045736",
+                        "value": "estrella"
+                    },
+                    "version2": {
+                        "timestamp": "2024-05-28T21:07:06.635746",
+                        "value": "Primer Dia de Clases"
+                    }
+                }
+            }
+        }
+    }
+}
