@@ -2,9 +2,9 @@ import bisect  # To insert elements in a sorted list
 import json
 import os
 import uuid  # To create unique IDs
-
-from src.hbase.table_dataclasses import *
-from src.hbase.table_decorators import update_timestamp
+from typing import Union
+from hbase.table_dataclasses import *
+from hbase.table_decorators import update_timestamp
 
 
 def parse_data_to_dict(data: list[RowEntry]) -> dict:
@@ -86,7 +86,7 @@ class Table:
     def disable(self) -> None:
         self.metadata.is_disabled = True
 
-    def get_column_family(self, column_family_name: str) -> ColumnFamily | None:
+    def get_column_family(self, column_family_name: str) -> Union[ColumnFamily, None]:
         for cf in self.metadata.column_families:
             if cf.name == column_family_name:
                 return cf
@@ -181,3 +181,52 @@ class Table:
         self.data.insert(i, entry)
 
         self.metadata.n_rows += 1
+
+    @update_timestamp
+    def delete(self, row_key: str, column_family: str, column_qualifier: str) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+        # Check if the column family exists
+        if not self.get_column_family(column_family):
+            raise Exception(f"Column family '{column_family}' not found")
+
+        # Find the entry to delete
+        for entry in self.data:
+            if entry.row_key == row_key and entry.column_family == column_family:
+                if column_qualifier in entry.column_qualifiers:
+                    del entry.column_qualifiers[column_qualifier]
+
+                    # If the entry has no more column qualifiers, delete the entry
+                    if not entry.column_qualifiers:
+                        self.data.remove(entry)
+                        self.metadata.n_rows -= 1
+                    return
+
+        raise Exception(f"Row key '{row_key}' not found")
+    
+    @update_timestamp
+    def delete_all(self, row_key: str) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+        # Find the entries to delete
+        entries_to_delete = [entry for entry in self.data if entry.row_key == row_key]
+
+        for entry in entries_to_delete:
+            self.data.remove(entry)
+            self.metadata.n_rows -= 1
+    
+    def scan(self) -> None:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+        print("ROW \t\t\t COLUMN+CELL")
+        for entry in self.data:
+            for cq, val in entry.column_qualifiers.items():
+                for version, data in val.items():
+                    if version == "n_versions":
+                        continue
+                
+                    print(f"{entry.row_key}\t\t\t column={entry.column_family}:{cq}, timestamp={data['timestamp']}, value={data['value']}")
+    def count(self) -> int:
+        if self.metadata.is_disabled:
+            raise Exception("Failed 1 action: NotServingRegionException: 1 time,")
+        return self.metadata.n_rows

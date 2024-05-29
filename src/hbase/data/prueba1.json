@@ -1,0 +1,39 @@
+{
+    "metadata": {
+        "name": "prueba1",
+        "column_families": [
+            {
+                "name": "c1",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            }
+        ],
+        "id": "c2b08085-41ab-47dd-974d-5dc44f7e678e",
+        "is_disabled": false,
+        "created_at": "2024-05-28T19:04:23.770939",
+        "updated_at": "2024-05-28T20:03:14.125496",
+        "n_rows": 2
+    },
+    "data": {
+        "yo": {
+            "c1": {
+                "q1": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-28T20:03:14.125496",
+                        "value": "db2"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,10 @@
 import os
 import re
 from typing import List
+import time
 
-from src.hbase.table import Table
-from src.hbase.table_dataclasses import ColumnFamily
+from hbase.table import Table
+from hbase.table_dataclasses import ColumnFamily
 
 
 def load_tables(data_dir: str) -> List[Table]:
@@ -110,6 +111,19 @@ class Hbase:
             self.drop_table(table)
 
         return len(tables)
+    
+    def truncate_table(self, table_name: str) -> None:
+        start = time.time()
+        table = self.get_table(table_name)
+
+        cfs = table.metadata.column_families
+        print(f"Truncating '{table_name}' (it may take a while):")
+        print(f" - Disabling table...")
+        self.disable_table(table_name)
+        print(f" - Truncating table...")
+        self.drop_table(table_name)
+        self.create_table(table_name, [cf.name for cf in cfs])
+        print(f"0 row(s) in {time.time() - start:.4f} seconds")
 
     def describe_table(self, table_name: str) -> tuple[str, int]:
         table = self.get_table(table_name)
@@ -168,3 +182,31 @@ class Hbase:
         table.put(row_key, column_family, column_qualifier, value)
 
         table.save(self.data_dir)
+
+    def delete(self, table_name: str, row_key: str, column_family: str, column_qualifier: str) -> None:
+        table = self.get_table(table_name)
+
+        table.delete(row_key, column_family, column_qualifier)
+
+        table.save(self.data_dir)
+    
+    def delete_all(self, table_name: str, row_key: str) -> None:
+        table = self.get_table(table_name)
+
+        table.delete_all(row_key)
+
+        table.save(self.data_dir)
+
+    def scan(self, table_name: str) -> None:
+        table = self.get_table(table_name)
+
+        table.scan()
+
+    def count(self, table_name: str) -> int:
+        start = time.time()
+        table = self.get_table(table_name)
+        count = table.count()
+        end = time.time()
+
+
+        print(f"{count} row(s) in {end - start:.4f} seconds \n\n=> {count}")

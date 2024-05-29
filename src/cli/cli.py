@@ -1,8 +1,8 @@
 import re
 
-from src.cli.regex_patterns import *
-from src.hbase.hbase import Hbase
-from src.cli.help_dict import COMMANDS
+from cli.regex_patterns import *
+from hbase.hbase import Hbase
+from cli.help_dict import COMMANDS
 
 
 class CommandLineInterface:
@@ -11,7 +11,7 @@ class CommandLineInterface:
 
     def run(self):
         try:
-            hbase = Hbase(data_dir="hbase/data")
+            hbase = Hbase(data_dir="src/hbase/data")
 
             while True:
                 temp_input = input("$ ")
@@ -153,19 +153,37 @@ class CommandLineInterface:
                             # TODO: Implement get command
                             continue
                         elif re.match(SCAN_PATTERN, user_input):  # Scan
-                            # TODO: Implement scan command
+                            match = re.match(SCAN_PATTERN, user_input)
+                            table_name = match.group(1)
+
+                            hbase.scan(table_name)
+                            
                             continue
                         elif re.match(DELETE_PATTERN, user_input):  # Delete
-                            # TODO: Implement delete command
+                            match = re.match(DELETE_PATTERN, user_input)
+                            table_name = match.group(1)
+                            row_key = match.group(2)
+                            cell = match.group(3)
+                            cf, cq = cell.split(':')
+
+                            hbase.delete(table_name, row_key, cf, cq)
                             continue
                         elif re.match(DELETE_ALL_PATTERN, user_input):  # Delete All
-                            # TODO: Implement delete_all command
+                            match = re.match(DELETE_ALL_PATTERN, user_input)
+                            table_name = match.group(1)
+                            row_key = match.group(2)
+                            hbase.delete_all(table_name, row_key)
                             continue
                         elif re.match(COUNT_PATTERN, user_input):  # Count
-                            # TODO: Implement count command
+                            match = re.match(COUNT_PATTERN, user_input)
+                            table_name = match.group(1)
+                            hbase.count(table_name)
                             continue
                         elif re.match(TRUNCATE_PATTERN, user_input):  # Truncate
                             # TODO: Implement truncate command
+                            match = re.match(TRUNCATE_PATTERN, user_input) 
+                            table_name = match.group(1)
+                            hbase.truncate_table(table_name)
                             continue
                         else:
                             print(f"Unknown command: '{user_input}'. Try 'help'.")

@@ -24,12 +24,12 @@ PUT_PATTERN = r"^put\s+'(\w+)'\s*,\s*'(\w+)'\s*,\s*'(\w+:\w+)'\s*,\s*'([^']*)'$"
 
 GET_PATTERN = r"^get"
 
-SCAN_PATTERN = r"^scan"
+SCAN_PATTERN = r"^scan\s+'(\w+)'"
 
-DELETE_PATTERN = r"^delete"
+DELETE_PATTERN = r"^delete\s+'(\w+)'\s*,\s*'(\w+)'\s*,\s*'(\w+:\w+)'\s*"
 
-DELETE_ALL_PATTERN = r"^delete_all"
+DELETE_ALL_PATTERN = r"^delete_all\s+'(\w+)'\s*,\s*'(\w+)'\s*"
 
-COUNT_PATTERN = r"^count"
+COUNT_PATTERN = r"^count\s+'(\w+)'"
 
-TRUNCATE_PATTERN = r"^truncate"
+TRUNCATE_PATTERN = r"^truncate\s+'(\w+)'"

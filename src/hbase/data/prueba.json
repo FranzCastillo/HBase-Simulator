@@ -1,0 +1,53 @@
+{
+    "metadata": {
+        "name": "prueba",
+        "column_families": [
+            {
+                "name": "c1",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "c2",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            }
+        ],
+        "id": "9ed3229d-81dc-4fd3-b68c-c6c54cef2cf9",
+        "is_disabled": false,
+        "created_at": "2024-05-28T21:02:06.989400",
+        "updated_at": "2024-05-28T21:02:20.313195",
+        "n_rows": 1
+    },
+    "data": {
+        "tu": {
+            "c2": {
+                "adios": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-28T21:02:20.313195",
+                        "value": "adios"
+                    }
+                }
+            }
+        }
+    }
+}
