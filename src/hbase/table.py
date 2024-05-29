@@ -15,6 +15,21 @@ def parse_data_to_dict(data: list[RowEntry]) -> dict:
     return new_dict
 
 
+def load_data(data: dict):
+    new_data = []
+    for row_key, column_families in data.items():
+        for column_family, column_qualifiers in column_families.items():
+            new_data.append(
+                RowEntry(
+                    row_key=row_key,
+                    column_family=column_family,
+                    column_qualifiers=column_qualifiers
+                )
+            )
+
+    return new_data
+
+
 class Table:
     def __init__(self, table_name: str = None, column_families: list[str] = None):
         self.metadata = MetaData(  # Create a Metadata object
@@ -43,8 +58,7 @@ class Table:
             n_rows=data["metadata"]["n_rows"],
         )
 
-        # TODO: Load data as RowEntries
-        self.data = []
+        self.data = load_data(data["data"])
 
     def to_json(self) -> str:
         # Convert the datetime objects to strings
