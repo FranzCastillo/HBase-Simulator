@@ -1,0 +1,39 @@
+create 'ptest', 'name', 'lname', 'class'
+
+list
+
+disable 'ptest'
+
+is_enabled 'ptest'
+
+alter 'ptest', {name => 'class', method => 'delete'}
+
+enable 'ptest'
+
+describe 'ptest'
+
+disable 'ptest'
+
+drop 'ptest'
+
+put 'Estudiantes', 'row4', 'Personal:Nombres', 'Mario', 'row4', 'Personal:Apellidos', 'Barrientos', 'row4', 'Académico:Carnet', '000000'
+
+get 'Estudiantes', 'row4'
+
+scan 'Estudiantes'
+
+delete 'Estudiantes', 'row4', 'Académico:Carnet'
+
+get 'Estudiantes', 'row4'
+
+delete_all 'Estudiantes', 'row4'
+
+count 'Estudiantes'
+
+truncate 'Estudiantes'
+
+disable 'prueba'
+
+disable 'prueba1'
+
+drop_all 'prue.*'
