@@ -45,19 +45,64 @@ def generate_student_data():
 
 def generate_hbase_json():
     data = {}
+    now = str(datetime.now())
     data['metadata'] = {
         'name': 'Estudiantes',
         'id': str(fake.uuid4()),
         'is_disabled': False,
-        'created_at': str(datetime.now()),
-        'n_rows': 1
+        'created_at': now,
+        'updated_at': now,
+        'n_rows': 1,
+        'column_families': [
+            {
+                'name': 'Personal',
+                'data_block_encoding': 'NONE',
+                'bloomfilter': 'ROW',
+                'replication_scope': '0',
+                'versions': '1',
+                'compression': 'NONE',
+                'min_versions': '0',
+                'ttl': 'FOREVER',
+                'keep_deleted_cells': 'FALSE',
+                'block_size': '65536',
+                'in_memory': 'false',
+                'block_cache': 'true'
+            },
+            {
+                'name': 'Académico',
+                'data_block_encoding': 'NONE',
+                'bloomfilter': 'ROW',
+                'replication_scope': '0',
+                'versions': '1',
+                'compression': 'NONE',
+                'min_versions': '0',
+                'ttl': 'FOREVER',
+                'keep_deleted_cells': 'FALSE',
+                'block_size': '65536',
+                'in_memory': 'false',
+                'block_cache': 'true'
+            },
+            {
+                'name': 'Cuenta',
+                'data_block_encoding': 'NONE',
+                'bloomfilter': 'ROW',
+                'replication_scope': '0',
+                'versions': '1',
+                'compression': 'NONE',
+                'min_versions': '0',
+                'ttl': 'FOREVER',
+                'keep_deleted_cells': 'FALSE',
+                'block_size': '65536',
+                'in_memory': 'false',
+                'block_cache': 'true'
+            }
+        ]
     }
     data['data'] = {}
 
     student = generate_student_data()
-    row_key = fake.word()  # La fila de ejemplo será una palabra aleatoria
+    row_key = fake.word()
 
-    # Agregar datos a la fila
     data['data'][row_key] = {}
     for family, columns in student.items():
         data['data'][row_key][family] = {}
