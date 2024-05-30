@@ -45,11 +45,11 @@
                 "block_cache": "true"
             }
         ],
-        "id": "6c0b6dca-e500-49bd-bf5b-d6a73b382c78",
+        "id": "e2b22968-9e6b-4012-b211-88aacb26b794",
         "is_disabled": false,
-        "created_at": "2024-05-29T22:17:32.974477",
-        "updated_at": "2024-05-30T10:30:03.989874",
-        "n_rows": 15
+        "created_at": "2024-05-30T12:21:03.331579",
+        "updated_at": "2024-05-30T12:21:21.948213",
+        "n_rows": 9
     },
     "data": {
         "row1": {
@@ -57,42 +57,42 @@
                 "Nombres": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.136104",
+                        "timestamp": "2024-05-30T12:21:13.635964",
                         "value": "John"
                     }
                 },
                 "Apellidos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.138346",
+                        "timestamp": "2024-05-30T12:21:13.636811",
                         "value": "Doe"
                     }
                 },
                 "Direccion": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.138809",
+                        "timestamp": "2024-05-30T12:21:13.637707",
                         "value": "123 Main St"
                     }
                 },
                 "CUI": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.139191",
+                        "timestamp": "2024-05-30T12:21:13.637911",
                         "value": "1234567890"
                     }
                 },
                 "Nacionalidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.139554",
+                        "timestamp": "2024-05-30T12:21:13.638090",
                         "value": "USA"
                     }
                 },
                 "Edad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:17:36.139899",
+                        "timestamp": "2024-05-30T12:21:13.638265",
                         "value": "25"
                     }
                 }
@@ -101,64 +101,64 @@
                 "Carnet": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.575923",
-                        "value": "21259"
+                        "timestamp": "2024-05-30T12:21:13.638458",
+                        "value": "20210001"
                     }
                 },
                 "Grado": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.578509",
-                        "value": "Tercer A\u00f1o"
+                        "timestamp": "2024-05-30T12:21:13.638638",
+                        "value": "Undergraduate"
                     }
                 },
                 "Cursos_Aprobados": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.582023",
-                        "value": "8"
+                        "timestamp": "2024-05-30T12:21:13.638821",
+                        "value": "Math101,CS101"
                     }
                 },
                 "Cursos_Pendientes": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.584041",
-                        "value": "15"
+                        "timestamp": "2024-05-30T12:21:13.639282",
+                        "value": "English101"
                     }
                 },
                 "Cursos_En_Curso": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.587028",
-                        "value": "6"
+                        "timestamp": "2024-05-30T12:21:13.639725",
+                        "value": "History101"
                     }
                 },
                 "Notas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.589587",
-                        "value": "[85, 78, 87, 98, 99, 95, 91, 90]"
+                        "timestamp": "2024-05-30T12:21:13.640097",
+                        "value": "3.8"
                     }
                 },
                 "Historial_de_faltas_acad\u00e9micas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.592581",
-                        "value": "0"
+                        "timestamp": "2024-05-30T12:21:13.640447",
+                        "value": "None"
                     }
                 },
                 "Carrera": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.595578",
-                        "value": "Ingenier\u00eda en Computaci\u00f3n"
+                        "timestamp": "2024-05-30T12:21:13.640794",
+                        "value": "Computer Science"
                     }
                 },
                 "Facultad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:26:38.600121",
-                        "value": "Ingenier\u00eda"
+                        "timestamp": "2024-05-30T12:21:13.641220",
+                        "value": "Engineering"
                     }
                 }
             },
@@ -166,36 +166,50 @@
                 "Mensualidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:08.830575",
-                        "value": "$250"
+                        "timestamp": "2024-05-30T12:21:13.641601",
+                        "value": "$1000"
                     }
                 },
-                "Pagos_Pendientes": {
+                "Pagos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:08.833578",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:13.641976",
+                        "value": "$500"
+                    }
+                },
+                "Pendientes": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T12:21:13.642401",
+                        "value": "$500"
                     }
                 },
                 "Tiene_Beca": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:08.836581",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:13.642775",
+                        "value": "Yes"
                     }
                 },
                 "Cantidad_Beca": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:08.841115",
-                        "value": "$100"
+                        "timestamp": "2024-05-30T12:21:13.643166",
+                        "value": "$500"
                     }
                 },
                 "Tiene_Cr\u00e9dito": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:08.844639",
+                        "timestamp": "2024-05-30T12:21:13.643584",
                         "value": "No"
+                    }
+                },
+                "Cantidad_Cr\u00e9dito": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T12:21:13.644005",
+                        "value": "$0"
                     }
                 }
             }
@@ -205,42 +219,42 @@
                 "Nombres": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.071359",
+                        "timestamp": "2024-05-30T12:21:18.594059",
                         "value": "Emily"
                     }
                 },
                 "Apellidos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.072343",
+                        "timestamp": "2024-05-30T12:21:18.596083",
                         "value": "Johnson"
                     }
                 },
                 "Direccion": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.073101",
+                        "timestamp": "2024-05-30T12:21:18.597393",
                         "value": "456 Elm St"
                     }
                 },
                 "CUI": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.073666",
+                        "timestamp": "2024-05-30T12:21:18.597874",
                         "value": "9876543210"
                     }
                 },
                 "Nacionalidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.074116",
+                        "timestamp": "2024-05-30T12:21:18.598236",
                         "value": "Canada"
                     }
                 },
                 "Edad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:14.074816",
+                        "timestamp": "2024-05-30T12:21:18.598578",
                         "value": "22"
                     }
                 }
@@ -249,64 +263,64 @@
                 "Carnet": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.790514",
-                        "value": "22598"
+                        "timestamp": "2024-05-30T12:21:18.598923",
+                        "value": "20210002"
                     }
                 },
                 "Grado": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.792514",
-                        "value": "Segundo A\u00f1o"
+                        "timestamp": "2024-05-30T12:21:18.599268",
+                        "value": "Graduate"
                     }
                 },
                 "Cursos_Aprobados": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.795519",
-                        "value": "6"
+                        "timestamp": "2024-05-30T12:21:18.599655",
+                        "value": "Chemistry101,Biology101"
                     }
                 },
                 "Cursos_Pendientes": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.796520",
-                        "value": "17"
+                        "timestamp": "2024-05-30T12:21:18.600166",
+                        "value": "Physics101"
                     }
                 },
                 "Cursos_En_Curso": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.799039",
-                        "value": "6"
+                        "timestamp": "2024-05-30T12:21:18.600588",
+                        "value": "Research Methods"
                     }
                 },
                 "Notas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.802047",
-                        "value": "[92, 85, 100, 97, 87, 95]"
+                        "timestamp": "2024-05-30T12:21:18.601080",
+                        "value": "4.2"
                     }
                 },
                 "Historial_de_faltas_acad\u00e9micas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.804050",
-                        "value": "2"
+                        "timestamp": "2024-05-30T12:21:18.601788",
+                        "value": "None"
                     }
                 },
                 "Carrera": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.807049",
-                        "value": "Marketing"
+                        "timestamp": "2024-05-30T12:21:18.602336",
+                        "value": "Biochemistry"
                     }
                 },
                 "Facultad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:27:58.809584",
-                        "value": "Business School"
+                        "timestamp": "2024-05-30T12:21:18.602753",
+                        "value": "Science"
                     }
                 }
             },
@@ -314,36 +328,50 @@
                 "Mensualidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:28.656790",
-                        "value": "$200"
+                        "timestamp": "2024-05-30T12:21:18.603129",
+                        "value": "$1200"
                     }
                 },
-                "Pagos_Pendientes": {
+                "Pagos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:28.660306",
-                        "value": "No"
+                        "timestamp": "2024-05-30T12:21:18.603527",
+                        "value": "$1200"
+                    }
+                },
+                "Pendientes": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T12:21:18.603930",
+                        "value": "$0"
                     }
                 },
                 "Tiene_Beca": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:28.662311",
-                        "value": "No"
+                        "timestamp": "2024-05-30T12:21:18.604352",
+                        "value": "Yes"
+                    }
+                },
+                "Cantidad_Beca": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T12:21:18.604788",
+                        "value": "$800"
                     }
                 },
                 "Tiene_Cr\u00e9dito": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:28.664576",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:18.605220",
+                        "value": "Yes"
                     }
                 },
                 "Cantidad_Cr\u00e9dito": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:29:28.666613",
-                        "value": "$250"
+                        "timestamp": "2024-05-30T12:21:18.605636",
+                        "value": "$400"
                     }
                 }
             }
@@ -353,42 +381,42 @@
                 "Nombres": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.780036",
+                        "timestamp": "2024-05-30T12:21:21.932658",
                         "value": "David"
                     }
                 },
                 "Apellidos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.781219",
+                        "timestamp": "2024-05-30T12:21:21.933821",
                         "value": "Lee"
                     }
                 },
                 "Direccion": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.782561",
+                        "timestamp": "2024-05-30T12:21:21.935016",
                         "value": "789 Oak Ave"
                     }
                 },
                 "CUI": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.783271",
+                        "timestamp": "2024-05-30T12:21:21.935520",
                         "value": "5432109876"
                     }
                 },
                 "Nacionalidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.783905",
+                        "timestamp": "2024-05-30T12:21:21.936068",
                         "value": "South Korea"
                     }
                 },
                 "Edad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-29T22:18:58.784524",
+                        "timestamp": "2024-05-30T12:21:21.936519",
                         "value": "24"
                     }
                 }
@@ -397,64 +425,64 @@
                 "Carnet": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.423302",
-                        "value": "21453"
+                        "timestamp": "2024-05-30T12:21:21.936962",
+                        "value": "20210003"
                     }
                 },
                 "Grado": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.426302",
-                        "value": "Tercer A\u00f1o"
+                        "timestamp": "2024-05-30T12:21:21.937399",
+                        "value": "Undergraduate"
                     }
                 },
                 "Cursos_Aprobados": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.428822",
-                        "value": "8"
+                        "timestamp": "2024-05-30T12:21:21.937886",
+                        "value": "Calculus101,Physics101"
                     }
                 },
                 "Cursos_Pendientes": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.430860",
-                        "value": "15"
+                        "timestamp": "2024-05-30T12:21:21.938467",
+                        "value": "Engineering101"
                     }
                 },
                 "Cursos_En_Curso": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.433819",
-                        "value": "6"
+                        "timestamp": "2024-05-30T12:21:21.938992",
+                        "value": "Thermodynamics"
                     }
                 },
                 "Notas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.435825",
-                        "value": "[99, 95, 100, 89, 99, 100, 100, 95]"
+                        "timestamp": "2024-05-30T12:21:21.939485",
+                        "value": "3.6"
                     }
                 },
                 "Historial_de_faltas_acad\u00e9micas": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.440362",
-                        "value": "0"
+                        "timestamp": "2024-05-30T12:21:21.940614",
+                        "value": "Late homework submission"
                     }
                 },
                 "Carrera": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.443405",
-                        "value": "Ingenier\u00eda Qu\u00edmica"
+                        "timestamp": "2024-05-30T12:21:21.941679",
+                        "value": "Mechanical Engineering"
                     }
                 },
                 "Facultad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:28:21.446363",
-                        "value": "Ingenier\u00eda"
+                        "timestamp": "2024-05-30T12:21:21.942571",
+                        "value": "Engineering"
                     }
                 }
             },
@@ -462,43 +490,50 @@
                 "Mensualidad": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.974813",
-                        "value": "$250"
+                        "timestamp": "2024-05-30T12:21:21.943479",
+                        "value": "$1500"
                     }
                 },
-                "Pagos_Pendientes": {
+                "Pagos": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.976847",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:21.944280",
+                        "value": "$1000"
+                    }
+                },
+                "Pendientes": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T12:21:21.945050",
+                        "value": "$500"
                     }
                 },
                 "Tiene_Beca": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.980336",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:21.945853",
+                        "value": "No"
                     }
                 },
                 "Cantidad_Beca": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.983342",
-                        "value": "$100"
+                        "timestamp": "2024-05-30T12:21:21.946653",
+                        "value": "$0"
                     }
                 },
                 "Tiene_Cr\u00e9dito": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.985335",
-                        "value": "S\u00ed"
+                        "timestamp": "2024-05-30T12:21:21.947437",
+                        "value": "Yes"
                     }
                 },
                 "Cantidad_Cr\u00e9dito": {
                     "n_versions": 1,
                     "version1": {
-                        "timestamp": "2024-05-30T10:30:03.989874",
-                        "value": "$200"
+                        "timestamp": "2024-05-30T12:21:21.948217",
+                        "value": "$1500"
                     }
                 }
             }
