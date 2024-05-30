@@ -1,0 +1,194 @@
+{
+    "metadata": {
+        "name": "Estudiantes",
+        "column_families": [
+            {
+                "name": "Personal",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "Acad\u00e9mico",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "Cuenta",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            }
+        ],
+        "id": "6c0b6dca-e500-49bd-bf5b-d6a73b382c78",
+        "is_disabled": false,
+        "created_at": "2024-05-29T22:17:32.974477",
+        "updated_at": "2024-05-29T22:18:58.795057",
+        "n_rows": 9
+    },
+    "data": {
+        "row1": {
+            "Personal": {
+                "Nombres": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.136104",
+                        "value": "John"
+                    }
+                },
+                "Apellidos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.138346",
+                        "value": "Doe"
+                    }
+                },
+                "Direccion": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.138809",
+                        "value": "123 Main St"
+                    }
+                },
+                "CUI": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.139191",
+                        "value": "1234567890"
+                    }
+                },
+                "Nacionalidad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.139554",
+                        "value": "USA"
+                    }
+                },
+                "Edad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:17:36.139899",
+                        "value": "25"
+                    }
+                }
+            }
+        },
+        "row2": {
+            "Personal": {
+                "Nombres": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.071359",
+                        "value": "Emily"
+                    }
+                },
+                "Apellidos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.072343",
+                        "value": "Johnson"
+                    }
+                },
+                "Direccion": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.073101",
+                        "value": "456 Elm St"
+                    }
+                },
+                "CUI": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.073666",
+                        "value": "9876543210"
+                    }
+                },
+                "Nacionalidad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.074116",
+                        "value": "Canada"
+                    }
+                },
+                "Edad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:14.074816",
+                        "value": "22"
+                    }
+                }
+            }
+        },
+        "row3": {
+            "Personal": {
+                "Nombres": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.780036",
+                        "value": "David"
+                    }
+                },
+                "Apellidos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.781219",
+                        "value": "Lee"
+                    }
+                },
+                "Direccion": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.782561",
+                        "value": "789 Oak Ave"
+                    }
+                },
+                "CUI": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.783271",
+                        "value": "5432109876"
+                    }
+                },
+                "Nacionalidad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.783905",
+                        "value": "South Korea"
+                    }
+                },
+                "Edad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-29T22:18:58.784524",
+                        "value": "24"
+                    }
+                }
+            }
+        }
+    }
+}
