@@ -2,7 +2,7 @@ import os
 import re
 from typing import List
 
-from src.hbase.table import Table
+from hbase.table import Table
 
 
 def load_tables(data_dir: str) -> List[Table]:

@@ -1,9 +1,9 @@
 import re
 import time
 
-from src.cli.help_dict import COMMANDS
-from src.cli.regex_patterns import *
-from src.hbase.hbase import Hbase
+from cli.help_dict import COMMANDS
+from cli.regex_patterns import *
+from hbase.hbase import Hbase
 
 
 class CommandLineInterface:
@@ -147,14 +147,13 @@ class CommandLineInterface:
                         elif re.match(PUT_PATTERN, user_input):  # Put
                             start = time.time()
                             match = re.match(PUT_PATTERN, user_input)
-
                             table_name = match.group(1)
-                            row_key = match.group(2)
-                            cell = match.group(3)
-                            cf, cq = cell.split(':')
-                            value = match.group(4)
+                            rest = match.group(2)
+                            entries = re.findall(PUT_BODY_PATTERN, rest)
 
-                            hbase.put(table_name, row_key, cf, cq, value)
+                            for row_key, cell, value in entries:
+                                cf, cq = cell.split(':')
+                                hbase.put(table_name, row_key, cf, cq, value)
 
                             end = time.time()
                             print(f"0 row(s) in {end - start:.4f} seconds")

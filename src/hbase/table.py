@@ -4,8 +4,8 @@ import os
 import uuid  # To create unique IDs
 from typing import Union
 
-from src.hbase.table_dataclasses import *
-from src.hbase.table_decorators import update_timestamp
+from hbase.table_dataclasses import *
+from hbase.table_decorators import update_timestamp
 
 
 def parse_data_to_dict(data: list[RowEntry]) -> dict:
