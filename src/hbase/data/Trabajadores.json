@@ -1,0 +1,241 @@
+{
+    "metadata": {
+        "name": "Trabajadores",
+        "column_families": [
+            {
+                "name": "Personal",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "Profesional",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "Financiero",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            },
+            {
+                "name": "Contacto",
+                "data_block_encoding": "NONE",
+                "bloomfilter": "ROW",
+                "replication_scope": "0",
+                "versions": "1",
+                "compression": "NONE",
+                "min_versions": "0",
+                "ttl": "FOREVER",
+                "keep_deleted_cells": "FALSE",
+                "block_size": "65536",
+                "in_memory": "false",
+                "block_cache": "true"
+            }
+        ],
+        "id": "12870530-290c-42fa-9057-c6c602baae59",
+        "is_disabled": false,
+        "created_at": "2024-05-30T10:30:58.151287",
+        "updated_at": "2024-05-30T10:51:57.932393",
+        "n_rows": 4
+    },
+    "data": {
+        "row1": {
+            "Personal": {
+                "Nombres": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.767507",
+                        "value": "Jaime Alfonso"
+                    }
+                },
+                "Apellidos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.770399",
+                        "value": "Pedrera Urizar"
+                    }
+                },
+                "Direcci\u00f3n": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.772397",
+                        "value": "9na avenida 10-30"
+                    }
+                },
+                "CUI": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.776390",
+                        "value": "594875020120"
+                    }
+                },
+                "Nacionalidad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.779925",
+                        "value": "guatemalteca"
+                    }
+                },
+                "Edad": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:09.783503",
+                        "value": "25"
+                    }
+                }
+            },
+            "Profesional": {
+                "ID": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.006577",
+                        "value": "458956"
+                    }
+                },
+                "Puesto": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.008998",
+                        "value": "Gerente de inform\u00e1tica"
+                    }
+                },
+                "Departamento": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.014008",
+                        "value": "Computaci\u00f3n"
+                    }
+                },
+                "Fecha_Ingreso": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.017526",
+                        "value": "15/05/2021"
+                    }
+                },
+                "A\u00f1os_Experiencia": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.019574",
+                        "value": "5"
+                    }
+                },
+                "Proyectos_Asignados": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:31:26.023546",
+                        "value": "2"
+                    }
+                },
+                "Habilidades": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:34:24.629057",
+                        "value": "[Edici\u00f3n, Trabajo en equipo, Comunicaci\u00f3n, Liderazgo]"
+                    }
+                }
+            },
+            "Financiero": {
+                "Salario": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.700589",
+                        "value": "$300"
+                    }
+                },
+                "Bonos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.703583",
+                        "value": "[$50, $25]"
+                    }
+                },
+                "Descuentos": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.708131",
+                        "value": "[$20, $15]"
+                    }
+                },
+                "Tiene_Seguro": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.712123",
+                        "value": "S\u00ed"
+                    }
+                },
+                "Tipo_Seguro": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.715642",
+                        "value": "M\u00e9dico"
+                    }
+                },
+                "Cuenta_Bancaria": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:45:59.717649",
+                        "value": "02152013"
+                    }
+                }
+            },
+            "Contacto": {
+                "Correo_Electr\u00f3nico": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:51:57.921866",
+                        "value": "ejah@gmail.com"
+                    }
+                },
+                "Tel\u00e9fono": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:51:57.926399",
+                        "value": "59864512"
+                    }
+                },
+                "Contacto_Emergencia": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:51:57.929395",
+                        "value": "Rogelio Flores"
+                    }
+                },
+                "Tel\u00e9fono_Emergencia": {
+                    "n_versions": 1,
+                    "version1": {
+                        "timestamp": "2024-05-30T10:51:57.932393",
+                        "value": "45879865"
+                    }
+                }
+            }
+        }
+    }
+}
